@@ -8,13 +8,22 @@ def random_predict(number:int=1) -> int:
         
     Returns:
         int: Число попыток"""
+        
     count = 0
+    left_edge = 1
+    right_edge = 101
+        
     
+        
     while True:
-        count +=1
-        predict_number = np.random.randint(1, 101) # предпологаемое число
-        if number == predict_number:
-            break # выход из цикла, если угадали
+        count += 1
+        predict_number = (right_edge + left_edge) // 2
+        if number < predict_number:
+            right_edge = predict_number
+        elif number > predict_number:
+            left_edge = predict_number
+        else:
+            break
     return(count)
 
 def score_game(random_randit) -> int:
